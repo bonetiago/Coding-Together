@@ -13,6 +13,8 @@
 @property (strong, nonatomic) NSString *suit;
 @property (nonatomic) NSUInteger rank;
 
+- (id)initWithRank:(NSUInteger)rank andSuit:(NSString *)suit;
+
 + (NSArray *)validSuits;
 + (NSArray *)rankStrings;
 + (NSUInteger)maxRanks;

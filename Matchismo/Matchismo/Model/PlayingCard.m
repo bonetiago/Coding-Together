@@ -12,6 +12,17 @@
 
 @synthesize suit = _suit;
 
+- (id)initWithRank:(NSUInteger)rank andSuit:(NSString *)suit {
+	self = [super init];
+	
+	if (self) {
+		self.rank = rank;
+		self.suit = suit;
+	}
+	
+	return self;
+}
+
 - (NSString *)contents {
 	return [[PlayingCard rankStrings][self.rank] stringByAppendingString:self.suit];
 }
