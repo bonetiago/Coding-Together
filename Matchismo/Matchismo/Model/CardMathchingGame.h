@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+<<<<<<< HEAD
 #import "Deck.h"
 
 @interface CardMathchingGame : NSObject
@@ -18,4 +19,9 @@
 
 @property (nonatomic, readonly) int score;
 
+=======
+
+@interface CardMathchingGame : NSObject
+
+>>>>>>> origin/master
 @end

@@ -8,6 +8,7 @@
 
 #import "CardMathchingGame.h"
 
+<<<<<<< HEAD
 @interface CardMathchingGame ()
 @property (nonatomic, readwrite) int score;
 @property (nonatomic, strong) NSMutableArray *cards;
@@ -45,4 +46,8 @@
 	
 }
 
+=======
+@implementation CardMathchingGame
+
+>>>>>>> origin/master
 @end
