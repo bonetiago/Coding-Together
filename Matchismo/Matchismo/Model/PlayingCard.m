@@ -12,14 +12,26 @@
 
 @synthesize suit = _suit;
 
+- (int)match:(Card *)otherCard {
+	PlayingCard *card = (PlayingCard *)otherCard;
+
+	if (self.rank == card.rank) return 4;
+	
+	if ([self.suit isEqualToString:card.suit]) return 1;
+	
+	return 0;
+}
+
 - (id)initWithRank:(NSUInteger)rank andSuit:(NSString *)suit {
 	self = [super init];
 	
+	NSLog(@"Initializing > PlayingCard");
 	if (self) {
 		self.rank = rank;
 		self.suit = suit;
 	}
 	
+	NSLog(@"	>> new card: %@", self.contents);
 	return self;
 }
 
@@ -34,7 +46,7 @@
 }
 
 + (NSUInteger)maxRanks {
-	return [[PlayingCard rankStrings] count];
+	return [[PlayingCard rankStrings] count] - 1;
 }
 
 + (NSArray *)validSuits {

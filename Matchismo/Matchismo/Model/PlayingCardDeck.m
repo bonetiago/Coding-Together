@@ -15,6 +15,7 @@
 	self = [super init];
 	
 	if (self) {
+		NSLog(@"Initializing > PlayingCardDeck");
 		for (NSString *suit in [PlayingCard validSuits]) {
 			for (NSUInteger rank=1; rank<=[PlayingCard maxRanks]; rank++) {
 				[self addCard:[[PlayingCard alloc] initWithRank:rank andSuit:suit]];

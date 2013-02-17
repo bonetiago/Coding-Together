@@ -11,23 +11,19 @@
 @implementation Card
 
 - (int)match:(Card *)card {
-	int score = 0;
-	
 	if ([self.contents isEqualToString:card.contents]){
-			score = 1;
+		return 1;
 	}
 	
-	return score;
+	return 0;
 }
 
 - (int)matchAny:(NSArray *)otherCards {
-	int score = 0;
-	
 	for (Card *card in otherCards) {
-		score = [self match:card];
+		return [self match:card];
 	}
 	
-	return score;
+	return 0;
 }
 
 @end

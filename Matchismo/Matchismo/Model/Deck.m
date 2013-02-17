@@ -29,12 +29,15 @@
 - (Card *)drawRandomCard {
 	Card *randomCard = nil;
 	
+	NSLog(@" >> There's %d card(s)", self.cards.count);
 	if (self.cards.count) {
 		int index = arc4random() % self.cards.count;
+		NSLog(@" >>		>> drawing card at index: %d", index);
 		randomCard = self.cards[index];
 		[self.cards removeObjectAtIndex:index];
 	}
 	
+	NSLog(@" >> drawed: %@", randomCard.contents);
 	return randomCard;
 }
 

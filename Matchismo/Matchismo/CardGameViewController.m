@@ -8,10 +8,14 @@
 
 #import "CardGameViewController.h"
 #import "PlayingCardDeck.h"
+#import "CardMathchingGame.h"
 
 @interface CardGameViewController ()
 @property (nonatomic) int flipsCount;
 @property (strong, nonatomic) Deck *deck;
+@property (strong, nonatomic) CardMathchingGame *game;
+
+- (void) updateUI;
 
 - (IBAction)flipCard:(UIButton *)sender;
 
@@ -22,17 +26,16 @@
 
 @implementation CardGameViewController
 
-- (void)setCards:(NSArray *)cardsButtons {
-	_cardsButtons = cardsButtons;
-	for (UIButton* cardButton in self.cardsButtons) {
-		Card *card = [self.deck drawRandomCard];
-		[cardButton setTitle:card.contents forState:UIControlStateSelected];
-	}
+- (CardMathchingGame *)game {
+	if (!_game) _game = [[CardMathchingGame alloc] initWithCardCount:[self.cardsButtons count]
+														   usingDeck:[[PlayingCardDeck alloc] init]];
+	return _game;
 }
 
-- (Deck *)deck {
-	if (!_deck) _deck = [[PlayingCardDeck alloc] init];
-	return _deck;
+- (void)setCardsButtons:(NSArray *)cardsButtons {
+	NSLog(@" setting card buttons");
+	_cardsButtons = cardsButtons;
+	[self updateUI];
 }
 
 - (void)setFlipsCount:(int)flipsCount {
@@ -41,8 +44,20 @@
 }
 
 - (IBAction)flipCard:(UIButton *)sender {
-	sender.selected = !sender.isSelected;
+	NSLog(@"fliped a card");
+	[self.game flipCardAtIndex:[self.cardsButtons indexOfObject:sender]];
 	self.flipsCount++;
+	[self updateUI];
+}
+
+- (void) updateUI {
+	for (UIButton *cardButton in self.cardsButtons) {
+		Card *card = [self.game cardAtIndex:[self.cardsButtons indexOfObject:cardButton]];
+		[cardButton setTitle:card.contents forState:UIControlStateSelected];
+		[cardButton setEnabled:!card.isUnplayable];
+		[cardButton setSelected:card.isFaceUp];
+		
+	}
 }
 
 @end
